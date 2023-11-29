@@ -1,0 +1,126 @@
+﻿<Window x:Class="CollegeNavigatorPC.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CollegeNavigatorPC"
+        xmlns:vm="clr-namespace:CollegeNavigatorPC.ViewModel"
+        mc:Ignorable="d"
+        Title="CollegeNavigatorPC" Height="600" Width="1000" MaxHeight="600" MaxWidth="1000"
+        MinHeight="600" MinWidth="1000" Background="#FF110203"
+        WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="NoResize">
+    <Window.DataContext>
+        <vm:MainViewModel/>
+    </Window.DataContext>
+    
+    <Window.Resources>
+        <ControlTemplate x:Key="SlideMenuBtn" TargetType="Button">
+            <Grid Name="Btn" Height="45">
+                <Border>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="{DynamicResource ResourceKey=Img}"
+                                   VerticalAlignment="Center" HorizontalAlignment="Left"
+                                   Height="30" Width="30" Stretch="Fill" Margin="20,0,0,0"/>
+                        <Label Content="{TemplateBinding Content}" Margin="10,0,0,0"
+                                   Background="Transparent" FontSize="14" 
+                                   VerticalAlignment="Center">
+                            <Label.Style>
+                                <Style TargetType="Label">
+                                    <Setter Property="Foreground" Value="#FF9D9999"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Path=IsMouseOver, ElementName=Btn}" 
+                                                         Value="true">
+                                            <Setter Property="Foreground" Value="White"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource
+                                                Mode=FindAncestor,
+                                                AncestorType={x:Type Button}},
+                                                Path = IsFocused}" Value="true">
+                                            <Setter Property="Foreground" Value="White"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Label.Style>
+                        </Label>
+                    </StackPanel>
+                </Border>
+                <Border Name="MouseOverBorder" Panel.ZIndex="-1">
+                    <Border.Style>
+                        <Style TargetType="Border">
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#5665A6"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                </Border>
+
+                <Border Name="IsSelectedBorder" Panel.ZIndex="-3">
+                    <Border.Style>
+                        <Style TargetType="Border">
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="BorderThickness" Value="0"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource
+                                            Mode=FindAncestor,
+                                            AncestorType={x:Type Button}},
+                                            Path = IsFocused}" Value="True">
+                                    <Setter Property="Background" Value="#5665A6"/>
+                                    <Setter Property="BorderThickness" Value="1"/>
+                                    <Setter Property="BorderBrush" Value="White"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                </Border>
+
+                <Border Name="IsSelectedBorder2" Background="Transparent" Panel.ZIndex="-3">
+                    <Border.Style>
+                        <Style TargetType="Border">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                            <Setter Property="BorderThickness" Value="3,0,0,0"/>
+                            <Setter Property="BorderBrush" Value="#FF00AEFF"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource
+                                                Mode=FindAncestor,
+                                                AncestorType={x:Type Button}},
+                                                Path = IsFocused}" Value="true">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                </Border>
+            </Grid>
+        </ControlTemplate>
+    </Window.Resources>
+    <Grid>
+        <Frame Grid.ColumnSpan="10" Grid.RowSpan="10" NavigationUIVisibility="Hidden" Content="{Binding CurPage}"/>
+        <Grid Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" Width="225">
+            <Border BorderThickness="1,0,1,1" BorderBrush="#F9F5EC"/>
+            <Border BorderThickness="0" Background="#F9F5EC"/>
+            <StackPanel Orientation="Vertical">
+                <Button Template="{StaticResource ResourceKey=SlideMenuBtn}" Command="{Binding OpenMapPage}"
+                            Content="Карта">
+                    <Button.Resources>
+                        <ImageSource x:Key="Img">Resources/Icons/Map.png</ImageSource>
+                    </Button.Resources>
+                </Button>
+                <Button Template="{StaticResource ResourceKey=SlideMenuBtn}" Command="{Binding OpenAudiencesPage}"
+                            Content="Аудитории">
+                    <Button.Resources>
+                        <ImageSource x:Key="Img">Resources/Icons/Audiences.png</ImageSource>
+                    </Button.Resources>
+                </Button>
+                <Button Template="{StaticResource ResourceKey=SlideMenuBtn}" Command="{Binding OpenExitPage}"
+                            Content="Выход">
+                    <Button.Resources>
+                        <ImageSource x:Key="Img">Resources/Icons/Exit.png</ImageSource>
+                    </Button.Resources>
+                </Button>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

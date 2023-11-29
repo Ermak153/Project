@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="View\Resources\Icons\Audiences.png" />
+    <None Remove="View\Resources\Icons\Exit.png" />
+    <None Remove="View\Resources\Icons\Map.png" />
+    <None Remove="View\Resources\Map\Map1.png" />
+    <None Remove="View\Resources\Map\Map2.png" />
+    <None Remove="View\Resources\Map\Map3.png" />
+    <None Remove="View\Resources\Map\Map4.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="View\Resources\Icons\Audiences.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="View\Resources\Icons\Exit.png" />
+    <Resource Include="View\Resources\Icons\Map.png" />
+    <Resource Include="View\Resources\Map\Map1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\Resources\Map\Map2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\Resources\Map\Map3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="View\Resources\Map\Map4.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+</Project>

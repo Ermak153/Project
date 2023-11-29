@@ -1,0 +1,48 @@
+﻿<Page x:Class="CollegeNavigatorPC.View.MapPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CollegeNavigatorPC.View"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="MapPage">
+
+    <Grid Background="#F9F5EC">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <Canvas x:Name="mapCanvas" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" 
+                MouseWheel="mapImage_MouseWheel"
+                MouseDown="mapImage_MouseDown"
+                MouseMove="mapImage_MouseMove"
+                MouseUp="mapImage_MouseUp">            
+            <Ellipse Name="marker" Width="5" Height="5" Fill="Red" Visibility="Collapsed"/>
+
+            <Image  x:Name="mapImage"
+                    Stretch="Uniform" 
+                    VerticalAlignment="Stretch"
+                    HorizontalAlignment="Stretch"
+                    Margin="0"
+                    RenderTransformOrigin="0.5,0.5" 
+                    Height="400"
+                    Canvas.Left="275" 
+                    Canvas.Top="75">
+            </Image>
+        </Canvas>
+
+        <TextBox x:Name="roomNumberTextBox" Grid.Row="4" Grid.Column="1"/>
+        <Button Content="Найти маршрут" Click="FindRouteButton_Click" Grid.Row="4" Grid.Column="2"/>
+        <Button Content="Этаж +" Click="NextFloorButton_Click" Grid.Row="4" Grid.Column="3"/>
+        <Button Content="Этаж -" Click="PrevFloorButton_Click" Grid.Row="4" Grid.Column="4"/>
+    </Grid>
+</Page>
